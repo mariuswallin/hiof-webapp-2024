@@ -9,7 +9,9 @@
     "strict": true,
     "noEmit": true
   },
-  "include": [],
+  "include": [
+    "**/*.ts",
+  ],
   "exclude": [
     "node_modules"
   ]
