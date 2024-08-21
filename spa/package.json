@@ -1,0 +1,17 @@
+{
+	"name": "spa",
+	"type": "module",
+	"scripts": {
+		"dev:frontend": "vite",
+		"dev:server": "node --watch server.js",
+		"dev": "concurrently -n frontend,server -c green,blue \"npm run dev:frontend\" \"npm run dev:server\""
+	},
+	"dependencies": {
+		"@hono/node-server": "^1.12.1",
+		"hono": "^4.5.7"
+	},
+	"devDependencies": {
+		"concurrently": "8.2.2",
+		"vite": "^5.4.2"
+	}
+}
