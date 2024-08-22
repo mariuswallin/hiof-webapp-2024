@@ -1,0 +1,76 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --link-color: #333333;
+  --header-bg: #3498db;
+  --button-bg: #2ecc71;
+}
+
+.dark-mode {
+  --bg-color: #333333;
+  --link-color: #333333;
+  --text-color: #ffffff;
+  --header-bg: #2980b9;
+  --button-bg: #27ae60;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#header {
+  background-color: var(--header-bg);
+  padding: 1rem;
+  color: white;
+}
+
+.main-header {
+  padding: 20px;
+}
+
+nav {
+  background-color: #f1f1f1;
+  a {
+    color: var(--link-color);
+  }
+}
+
+:where(section, article) p {
+  line-height: 1.6;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.3rem;
+}
+
+button {
+  background-color: var(--button-bg);
+  color: white;
+  border: none;
+  padding: 1rem 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#dark-mode {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
