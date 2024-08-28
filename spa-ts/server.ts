@@ -3,6 +3,7 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { serveStatic } from "@hono/node-server/serve-static";
 import { HabitSchema, type Habit } from "./types";
+import fs from "node:fs/promises";
 
 const app = new Hono();
 
@@ -18,6 +19,12 @@ const habits: Habit[] = [
     createdAt: new Date("2024-01-01"),
   },
 ];
+
+app.get("/json", async (c) => {
+  const data = await fs.readFile("./static/data.json", "utf8");
+  const dataAsJson = JSON.parse(data);
+  return c.json(dataAsJson);
+});
 
 app.post("/add", async (c) => {
   const newHabit = await c.req.json();

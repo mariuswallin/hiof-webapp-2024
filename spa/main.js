@@ -65,4 +65,27 @@ function loadFromApi() {
     });
 }
 
+function loadFromJSON() {
+  fetch("static/data.json")
+    .then((response) => {
+      // Konverterer data til json format
+      return response.json();
+    })
+    .then((data) => {
+      // Henter ut div med id `data`
+      const jsonId = document.getElementById("json");
+      // Debugging
+      console.log(data);
+      // Går igjennom dataen og lager en `p` til hvert element.
+      for (const habit of data) {
+        const element = document.createElement("p");
+        // Legger til verdien koblet til `title` nøkkelen i .json filen
+        element.textContent = `${habit.title}`;
+        // Legger innholdet til div-en
+        jsonId.appendChild(element);
+      }
+    });
+}
+
+loadFromJSON(); // Leser data fra json filen
 loadFromApi(); // Kaller funksjonen for å laste inn vaner når siden lastes
