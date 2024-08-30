@@ -1,0 +1,27 @@
+{
+	"name": "spa-ts-build",
+	"type": "module",
+	"scripts": {
+		"build:client": "vite build",
+		"build:server": "vite build --config vite.server.config.js",
+		"clean": "rm -rf dist statics build",
+		"build:all": "pnpm run build:client && pnpm run build:server",
+		"build": "pnpm run clean && pnpm run build:server",
+		"dev:frontend": "vite",
+		"dev:server": "vite --config vite.server.config.js",
+		"dev": "concurrently -n frontend,server -c green,blue \"pnpm run dev:frontend\" \"pnpm run dev:server\""
+	},
+	"dependencies": {
+		"@hono/node-server": "^1.12.2",
+		"hono": "^4.5.9",
+		"zod": "^3.23.8"
+	},
+	"devDependencies": {
+		"@hono/vite-dev-server": "^0.15.0",
+		"@types/node": "^22.5.1",
+		"concurrently": "8.2.2",
+		"tsx": "^4.19.0",
+		"typescript": "^5.5.4",
+		"vite": "^5.4.2"
+	}
+}
