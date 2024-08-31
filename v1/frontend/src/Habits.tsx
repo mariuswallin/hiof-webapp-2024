@@ -32,7 +32,7 @@ export default function Habits(props: {
     // setHabits(prev => ([...prev, { id: crypto.randomUUID(), title }]))
     // updateParentHabits(habits);
     const newHabit = await habitsApi.create({ title });
-
+    console.log("Created habit", newHabit);
     if (newHabit) {
       handleHabitMutation("add", newHabit);
     }

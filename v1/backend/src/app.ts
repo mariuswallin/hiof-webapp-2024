@@ -36,7 +36,7 @@ app.post("/habits", async (c) => {
 });
 
 app.delete("/habits/:id", (c) => {
-  const id = c.req.param("id");
+  const id = c.req.param("id") as ID;
   const index = habits.findIndex((h) => h.id === id);
 
   if (index === -1) {
@@ -49,7 +49,7 @@ app.delete("/habits/:id", (c) => {
 });
 
 app.get("/streaks", async (c) => {
-  //await new Promise((resolve) => setTimeout(resolve, 1000));
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   return c.json({
     data: Array.from(streaks.values()),
   });

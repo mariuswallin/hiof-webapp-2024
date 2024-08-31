@@ -22,14 +22,14 @@ function App() {
         console.log("fetching data");
         const habitPromise = habitsApi.list();
         const streakPromise = ofetch<{ data: StreakType[] }>(
-          "http://localhost:3000/streaks"
+          "http://localhost:3002/streaks"
         );
         const [habits, streaks] = await Promise.all([
           habitPromise,
           streakPromise,
         ]);
-        console.log("data fetched");
-        setHabits(habits ?? []);
+        console.log("data fetched", habits, streaks);
+        setHabits(habits.data ?? []);
         setStreaks(streaks.data ?? []);
         console.log("data initialized");
         console.timeEnd("fetching");
@@ -69,7 +69,7 @@ function App() {
 
   const updateStreakCountServer = async (id: string) => {
     try {
-      return ofetch(`http://localhost:3000/habits/${id}/streaks`, {
+      return ofetch(`http://localhost:3002/habits/${id}/streaks`, {
         method: "PATCH",
       });
     } catch (error) {

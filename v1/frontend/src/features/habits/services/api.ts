@@ -1,7 +1,7 @@
 import { ofetch } from "ofetch";
 import type { Habit } from "@/types";
 
-const baseUrl = "http://localhost:3000";
+const baseUrl = "http://localhost:3002";
 const habitsUrl = `${baseUrl}/habits`;
 
 const remove = async (habit: Habit) => {
@@ -21,7 +21,7 @@ const create = async (data: Pick<Habit, "title">) => {
       body: data,
     });
 
-    return createdHabit?.data ?? [];
+    return createdHabit ?? {};
   } catch (error) {
     console.error(error);
   }
