@@ -1,0 +1,15 @@
+{
+	"name": "dag3",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "concurrently -n frontend-ts,frontend-react,server -c green,blue,yellow \"cd frontend-ts && pnpm run dev\" \"cd frontend-react && pnpm run dev\" \"cd backend && pnpm run dev\""
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"concurrently": "8.2.2"
+	}
+}
