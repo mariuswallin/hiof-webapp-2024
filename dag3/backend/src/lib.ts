@@ -1,9 +1,9 @@
 import { readFile, writeFile } from "node:fs/promises";
-import type { ToDomainParams, Weather } from "./types";
+import type { ToWeatherDomain, Weather } from "./types";
 
 export async function getParsedData() {
   const data = await readFile("./data/weather.json", "utf-8");
-  const parsedData = JSON.parse(data) as ToDomainParams[];
+  const parsedData = JSON.parse(data) as ToWeatherDomain[];
   return parsedData.map(toDomain);
 }
 

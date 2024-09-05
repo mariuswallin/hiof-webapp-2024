@@ -6,4 +6,4 @@ export type Weather = {
   description?: string;
 };
 
-export type ToDomainParams = Weather & { deleted?: "true" };
+export type ToWeatherDomain = Weather & { deleted?: "true" };
