@@ -1,0 +1,18 @@
+{
+	"name": "dag3",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"clean": "rm -rf **/dist **/build **/node_modules **/package-lock.json **/pnpm-lock.yaml ./node_modules ./package-lock.json ./pnpm-lock.yaml",
+		"dev": "concurrently -n frontend-ts,frontend-react,server -c green,blue,yellow \"cd frontend-ts && pnpm run dev\" \"cd frontend-react && pnpm run dev\" \"cd backend && pnpm run dev\""
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"concurrently": "8.2.2",
+		"zx": "^8.1.5"
+	}
+}
