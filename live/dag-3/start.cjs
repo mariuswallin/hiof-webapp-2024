@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 
-const { exec, spawn } = require("child_process");
-const { promisify } = require("util");
-const readline = require("readline");
+const { exec, spawn } = require("node:child_process");
+const { promisify } = require("node:util");
+const readline = require("node:readline");
 
 const execAsync = promisify(exec);
 
-// Function to get user input
 function question(query) {
 	const rl = readline.createInterface({
 		input: process.stdin,
@@ -21,7 +20,6 @@ function question(query) {
 	);
 }
 
-// Check if zx is installed
 async function isZxInstalled() {
 	try {
 		require("zx");
@@ -31,15 +29,13 @@ async function isZxInstalled() {
 	}
 }
 
-// Install zx locally
 async function installZx(pm) {
-	console.log("Installing zx locally...");
+	console.log("Installerer ZX...");
 	await execAsync(`${pm} add zx`);
 }
 
-// Function to install dependencies in a directory
 async function installInDir(dir, pm) {
-	console.log(`Installing dependencies in ${dir}...`);
+	console.log(`Installerer avhengigheter i ${dir}...`);
 	try {
 		await execAsync(`cd ${dir} && ${pm} install`);
 	} catch (error) {
@@ -47,16 +43,12 @@ async function installInDir(dir, pm) {
 	}
 }
 
-// Main script
 async function main() {
 	try {
-		// Get package manager from user input
-		const pm = await question(
-			"Which package manager do you want to use? (npm/pnpm): ",
-		);
+		const pm = await question("Velg (npm/pnpm): ");
 
 		if (pm !== "npm" && pm !== "pnpm") {
-			console.error("Invalid package manager. Please use npm or pnpm.");
+			console.error("Invalid package manager. Bruk npm eller pnpm.");
 			process.exit(1);
 		}
 
@@ -64,46 +56,32 @@ async function main() {
 			await installZx(pm);
 		}
 
-		console.log("Starting setup process...");
+		console.log("Starter setup...");
 
-		// Install dependencies in backend
 		await installInDir("backend", pm);
-
-		// Install dependencies in frontend-ts
 		await installInDir("frontend-ts", pm);
-
-		// Install dependencies in frontend-react
 		await installInDir("frontend-react", pm);
 
-		// Install dependencies in current directory
-		console.log("Setting up current directory...");
+		console.log("Installing dependencies i mappen du startet scriptet...");
 		await execAsync(`${pm} install`);
 
-		console.log(
-			"Setup complete. You can now run '${pm} run dev' to start the development server.",
-		);
+		console.log("Setup ferdig");
 
-		// Ask if the user wants to start the dev server
-		const startDev = await question(
-			"Do you want to start the dev server now? (y/n): ",
-		);
+		const startDev = await question("Starte applikasjonene? (y/n): ");
 		if (startDev.toLowerCase() === "y") {
-			console.log("Starting dev server...");
+			console.log("Starter applikasjoner...");
 			const child = spawn(pm, ["run", "dev"], {
 				stdio: "inherit",
 				shell: true,
 			});
-			console.log(`Dev server started. Process ID: ${child.pid}`);
-			console.log("You can stop the server with Ctrl+C");
+			console.log(`Dev server startet. Process ID: ${child.pid}`);
+			console.log("Du kan stoppe applikasjonene med Ctrl+C");
 		} else {
-			console.log(
-				`You can start the dev server later by running '${pm} run dev'`,
-			);
+			console.log(`Du kan starter applikasjonene seinere med '${pm} run dev'`);
 		}
 	} catch (error) {
-		console.error("An error occurred:", error);
+		console.error("Noe gikk galt:", error);
 	}
 }
 
-// Run the main function
 main();
