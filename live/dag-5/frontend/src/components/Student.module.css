@@ -1,0 +1,76 @@
+.remove {
+  position: absolute;
+  top: 0;
+  right: 0rem;
+  background-color: var(--error-color);
+  color: white;
+  border: none;
+  height: 100%;
+  min-width: 50px;
+  z-index: 1;
+
+  &:hover {
+    background-color: #f87171; /* Red 400 */
+  }
+}
+
+.student {
+  background-color: var(--surface-color);
+  border-radius: 0.5rem;
+  padding: 1.2rem;
+  text-align: center;
+  box-shadow: 0 4px 6px var(--shadow-color);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: 1px solid var(--border-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  position: relative;
+}
+
+.name {
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  gap: 0.5rem;
+}
+
+input {
+  padding-left: 0.25rem;
+  padding-block: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  transition: border-color 0.2s ease-in-out;
+
+  &::placeholder {
+    color: var(--text-muted);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+  }
+}
+
+.field {
+  display: flex;
+  max-width: fit-content;
+}
+
+.inputMuted {
+  border: none;
+  width: fit-content;
+  display: block;
+  width: fit-content;
+}
