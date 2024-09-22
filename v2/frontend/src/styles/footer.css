@@ -1,0 +1,21 @@
+@layer footer {
+  footer {
+    background-color: var(--slate-100);
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    min-height: 4rem;
+    padding: 0 1rem;
+    position: sticky;
+    bottom: 0;
+    z-index: 99;
+
+    & button {
+      background-color: #333;
+      color: white;
+    }
+  }
+}

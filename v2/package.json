@@ -1,0 +1,17 @@
+{
+  "name": "ulearn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.21.3",
+    "eslint": "^9.6.0",
+    "typescript": "^5.5.3"
+  }
+}

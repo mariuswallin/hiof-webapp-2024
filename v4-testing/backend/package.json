@@ -1,0 +1,29 @@
+{
+	"name": "server",
+	"type": "module",
+	"scripts": {
+		"dev": "tsx watch src/index.ts",
+		"dev:debug": "tsx watch --inspect src/index.ts",
+		"db:setup": "tsx src/db/index.ts",
+		"test": "vitest run -c vitest.unit.ts",
+		"test:integration": "vitest run -c vitest.integration.ts"
+	},
+	"dependencies": {
+		"@hono/node-server": "^1.12.0",
+		"@t3-oss/env-core": "^0.11.0",
+		"@types/better-sqlite3": "^7.6.11",
+		"better-sqlite3": "^11.1.2",
+		"dotenv": "^16.4.5",
+		"hono": "^4.5.3",
+		"pino": "^9.3.2"
+	},
+	"devDependencies": {
+		"@types/node": "^22.0.0",
+		"@vitest/ui": "^2.0.5",
+		"sqlite3": "^5.1.7",
+		"tsx": "^4.16.2",
+		"typescript": "^5.5.4",
+		"vitest": "^2.0.5",
+		"zod": "^3.23.8"
+	}
+}

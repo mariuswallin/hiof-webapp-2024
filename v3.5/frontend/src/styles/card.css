@@ -1,0 +1,38 @@
+.habit-card {
+  padding-block: calc(var(--base) * 2);
+  padding-inline: calc(var(--base) * 2);
+  width: 100%;
+  background-color: white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: var(--base);
+  -webkit-border-radius: var(--base);
+  -moz-border-radius: var(--base);
+  -ms-border-radius: var(--base);
+  -o-border-radius: var(--base);
+  container-type: inline-size;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      padding: var(--base);
+      /* 1:1 format på knappen */
+      aspect-ratio: 1;
+    }
+  }
+  /* Når containeren blir mindre enn 600px */
+  @container (max-width: 600px) {
+    section {
+      margin-top: 2rem;
+      /* Reverserer rekkefølgen */
+      flex-direction: column-reverse;
+
+      button {
+        width: 100%;
+        padding-inline: 0.4rem;
+        padding-block: 0.2rem;
+      }
+    }
+  }
+}

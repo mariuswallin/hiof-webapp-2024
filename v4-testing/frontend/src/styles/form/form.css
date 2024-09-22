@@ -1,0 +1,38 @@
+.wrapper {
+  /* Kun legg til styles på form under wrapper hvis .form-create parent */
+  :where(.form-create) & {
+    & form {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 2rem;
+      height: 100%;
+
+      & input {
+        /* By default bruk minimum 16px ellers zoomer nettleseren på feltet */
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+        padding-bottom: 0.125rem;
+        padding: 0.25rem;
+        background-color: transparent;
+        border-width: 0;
+        border-color: var(--slate-200);
+        border-bottom-width: 1px;
+        width: 100%;
+        max-width: 500px;
+
+        /* Hvis feltet er disabled */
+        &:disabled {
+          cursor: default;
+        }
+
+        &::placeholder {
+          font-weight: 300;
+          color: var(--slate-300);
+          font-style: italic;
+        }
+      }
+    }
+  }
+}

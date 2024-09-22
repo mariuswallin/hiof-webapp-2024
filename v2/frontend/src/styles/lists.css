@@ -1,0 +1,11 @@
+ul {
+  /* Kun hvis ul er wrappet i en .list */
+  :where(.list) & {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--base) * 3);
+    width: 100%;
+  }
+}

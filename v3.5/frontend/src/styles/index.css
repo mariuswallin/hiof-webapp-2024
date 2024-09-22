@@ -1,0 +1,11 @@
+/* Importere alle css */
+@import "./reset.css";
+@import "./base.css";
+@import "./card.css";
+@import "./form/base.css";
+@import "./form/form.css";
+@import "./footer.css";
+@import "./button.css";
+@import "./layout.css";
+@import "./direction.css";
+@import "./lists.css";

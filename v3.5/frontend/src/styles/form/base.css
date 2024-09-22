@@ -1,0 +1,51 @@
+.field {
+  /* Label over feltet da det er anbefalt */
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  & label {
+    font-weight: 300;
+    font-size: 1rem;
+  }
+
+  & input:not([type="checkbox"]),
+  & textarea,
+  & select,
+  & fieldset,
+  & legend {
+    font-size: 1.2rem;
+    border-radius: 0.4rem;
+    padding: 0.5rem 0.6rem;
+    border: 1px solid;
+    accent-color: var(--theme);
+    -webkit-border-radius: 0.4rem;
+    -moz-border-radius: 0.4rem;
+    -ms-border-radius: 0.4rem;
+    -o-border-radius: 0.4rem;
+  }
+
+  & input[type="checkbox"] {
+    width: fit-content;
+    min-width: 1.2rem;
+    height: 1.2rem;
+    text-align: left;
+    border: 1px solid blue;
+    accent-color: var(--theme);
+  }
+
+  /* Styling når vi tabber til feltet */
+  & input:focus-visible {
+    outline: 2px dashed rgb(52, 73, 158);
+  }
+
+  /* Hvis .field har et element med .field-error 
+  i seg gi .field input stylingen */
+  &:has(.field-error) {
+    & input,
+    & textarea,
+    & select {
+      border-color: var(--error);
+    }
+  }
+}

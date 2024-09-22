@@ -1,0 +1,19 @@
+.direction {
+  /* Hvis direction har .layout css som parent - apply denne stilen */
+  :where(.layout) & {
+    grid-column: span 2;
+    display: flex;
+    place-self: end;
+    justify-self: flex-end;
+    border: 1px solid var(--slate-200);
+    border-radius: 1rem;
+    max-width: fit-content;
+    padding: 1rem 1.2rem;
+    margin-left: auto;
+    gap: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+  }
+}

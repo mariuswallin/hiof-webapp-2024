@@ -1,0 +1,50 @@
+/* Setter spesifisitet på knapp. 
+Kan derfor enkelt overskrives hvis nødvendig */
+
+@layer button {
+  button {
+    /* Sikrer at knappen ikke blir full bredde */
+    max-width: fit-content;
+    border: none;
+    background-color: var(--blue);
+    border-radius: 0.2rem;
+    padding: 0.6rem 1rem;
+    font-weight: 400;
+    margin: 1rem 0;
+    /* Prefix for nettlesere som trenger hjelp til å tolke stilen */
+    -webkit-border-radius: 0.2rem;
+    -moz-border-radius: 0.2rem;
+    -ms-border-radius: 0.2rem;
+    -o-border-radius: 0.2rem;
+
+    /* Nesting (ser etter <button class="error" /> */
+    &.error {
+      background-color: var(--error);
+      color: white;
+    }
+
+    &.warning {
+      background-color: var(--warning);
+      color: white;
+    }
+
+    &.success {
+      background-color: var(--success);
+    }
+
+    &.outline {
+      border: 1px solid var(--box-border);
+      background-color: transparent;
+    }
+
+    /* Hvis knappen er disabled <button disabled /> */
+    &:disabled {
+      opacity: 0.4;
+    }
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+  }
+}
