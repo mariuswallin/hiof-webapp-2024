@@ -1,0 +1,106 @@
+{
+	"users": [
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440000",
+			"email": "kari.nordmann@example.com",
+			"name": "Kari Nordmann"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440001",
+			"email": "ole.nordmann@example.com",
+			"name": "Ole Nordmann"
+		}
+	],
+	"habits": [
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440002",
+			"title": "Trene daglig",
+			"createdAt": "2024-01-01T09:00:00Z",
+			"categories": "helse,trening",
+			"userId": "550e8400-e29b-41d4-a716-446655440000",
+			"rule": "daily",
+			"endedAt": null,
+			"deletedAt": null,
+			"publishedAt": "2024-01-01T09:00:00Z",
+			"updatedAt": "2024-01-01T09:00:00Z"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440003",
+			"title": "Lese bøker",
+			"createdAt": "2024-01-02T10:00:00Z",
+			"categories": "utdanning,fritid",
+			"userId": "550e8400-e29b-41d4-a716-446655440001",
+			"rule": "weekly:3",
+			"endedAt": null,
+			"deletedAt": null,
+			"publishedAt": "2024-01-02T10:00:00Z",
+			"updatedAt": "2024-01-02T10:00:00Z"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440004",
+			"title": "Morgentur",
+			"createdAt": "2024-01-03T07:00:00Z",
+			"categories": "helse,trening",
+			"userId": "550e8400-e29b-41d4-a716-446655440000",
+			"rule": "daily",
+			"endedAt": "2024-02-01T07:00:00Z",
+			"deletedAt": null,
+			"publishedAt": "2024-01-03T07:00:00Z",
+			"updatedAt": "2024-02-01T07:00:00Z"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440005",
+			"title": "Lage mat",
+			"createdAt": "2024-01-04T17:00:00Z",
+			"categories": "mat",
+			"userId": "550e8400-e29b-41d4-a716-446655440001",
+			"rule": "custom:day:2",
+			"endedAt": null,
+			"deletedAt": "2024-02-05T17:00:00Z",
+			"publishedAt": "2024-01-04T17:00:00Z",
+			"updatedAt": "2024-02-05T17:00:00Z"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440006",
+			"title": "Koding",
+			"createdAt": "2024-01-04T17:00:00Z",
+			"categories": "skole,fritid",
+			"userId": "550e8400-e29b-41d4-a716-446655440001",
+			"rule": "custom:day:2",
+			"endedAt": null,
+			"deletedAt": null,
+			"publishedAt": "2024-01-04T17:00:00Z",
+			"updatedAt": "2024-02-05T17:00:00Z"
+		}
+	],
+	"streaks": [
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440006",
+			"habitId": "550e8400-e29b-41d4-a716-446655440002",
+			"updatedAt": "2024-01-03T08:00:00Z",
+			"createdAt": "2024-01-01T09:00:00Z",
+			"note": "Føler meg bedre etter å ha trent"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440007",
+			"habitId": "550e8400-e29b-41d4-a716-446655440003",
+			"updatedAt": "2024-01-09T09:00:00Z",
+			"createdAt": "2024-01-02T10:00:00Z",
+			"note": "Leste en spennende bok i dag"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440008",
+			"habitId": "550e8400-e29b-41d4-a716-446655440004",
+			"updatedAt": "2024-01-31T07:00:00Z",
+			"createdAt": "2024-01-03T07:00:00Z",
+			"note": "Fin morgentur, følte meg oppkvikket"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440009",
+			"habitId": "550e8400-e29b-41d4-a716-446655440005",
+			"updatedAt": "2024-02-03T17:00:00Z",
+			"createdAt": "2024-01-04T17:00:00Z",
+			"note": "Lagde en ny oppskrift, det var gøy"
+		}
+	]
+}
