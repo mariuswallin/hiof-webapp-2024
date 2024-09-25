@@ -66,6 +66,8 @@ input {
 .field {
   display: flex;
   max-width: fit-content;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .inputMuted {
@@ -73,4 +75,14 @@ input {
   width: fit-content;
   display: block;
   width: fit-content;
+}
+
+.error {
+  color: var(--error-color);
+  font-size: 0.8rem;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  text-align: left;
 }
