@@ -2,10 +2,9 @@ type AvatarProps = {
 	name: string;
 };
 
-const Avatar = ({ name }: AvatarProps) => {
-	const avatar = name.split(" ").join("").toUpperCase().slice(0, 1);
+export default function Avatar(data: AvatarProps) {
+	const { name } = data;
+	const firstLetter = name.split(" ").join("").toUpperCase().slice(0, 1);
 
-	return <div className="avatar">{avatar}</div>;
-};
-
-export default Avatar;
+	return <p className="avatar">{firstLetter}</p>;
+}

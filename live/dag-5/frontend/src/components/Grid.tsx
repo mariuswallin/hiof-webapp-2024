@@ -1,77 +1,28 @@
-import Student, { type StudentProps } from "./Student";
-import AddStudentForm from "./StudentForm";
+import { useState } from "react";
+import Student from "./Student";
+import type { Student as StudentProp } from "./types";
+import AddStudentForm from "./AddStudentForm";
 
 type GridProps = {
-  students: StudentProps[];
-  onAddStudent: ({ name }: { name: string }) => void;
-  onRemoveStudent: (id: string) => void;
+	students: StudentProp[];
 };
 
-// const Grid = ({ students }: GridProps) => {
-//   return (
-//     <div className="grid">
-//       {students.map((student) => (
-//         <Student key={student.id} id={student.id} name={student.name} />
-//       ))}
-//     </div>
-//   );
-// };
+export default function Grid(props: GridProps) {
+	// props.students ?? []
+	const [students, setStudents] = useState<StudentProp[]>(props.students ?? []);
 
-// import { useState } from "react";
+	const onAddStudent = (student: { name: string }) => {
+		setStudents((prev) => [...prev, { id: crypto.randomUUID(), ...student }]);
+	};
 
-// type GridProps = {
-//   students: StudentProps[];
-// };
-
-// const Grid = ({ students: initialStudents }: GridProps) => {
-//   const [students, setStudents] = useState<StudentProps[]>(initialStudents);
-//   return (
-//     <section>
-//       <div className="grid">
-//         {students.map((student) => (
-//           <Student key={student.id} id={student.id} name={student.name} />
-//         ))}
-//       </div>
-//       <AddStudentForm
-//         onAddStudent={(student) => setStudents((prev) => [...prev, student])}
-//       />
-//     </section>
-//   );
-// };
-
-// const Grid = ({ students, onAddStudent, onRemoveStudent }: GridProps) => {
-//   return (
-//     <section>
-//       {students.length ? (
-//         <div className="grid">
-//           {students.map((student) => (
-//             <Student
-//               key={student.id}
-//               id={student.id}
-//               name={student.name}
-//               onRemoveStudent={onRemoveStudent}
-//             />
-//           ))}
-//         </div>
-//       ) : (
-//         <p>Ingen studenter</p>
-//       )}
-//       <AddStudentForm onAddStudent={onAddStudent} />
-//     </section>
-//   );
-// };
-
-const Grid = ({ data, renderItem, children }: any) => {
-  return (
-    <section>
-      {data.length ? (
-        <div className="grid">{data.map((item) => renderItem(item))}</div>
-      ) : (
-        <p>Ingen data</p>
-      )}
-      {children}
-    </section>
-  );
-};
-
-export default Grid;
+	return (
+		<section>
+			<article className="grid">
+				{students.map((student) => (
+					<Student key={student.id} name={student.name} id={student.id} />
+				))}
+			</article>
+			<AddStudentForm onAddStudent={onAddStudent} />
+		</section>
+	);
+}
