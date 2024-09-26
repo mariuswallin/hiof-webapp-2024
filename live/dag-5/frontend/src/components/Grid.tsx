@@ -18,7 +18,7 @@ export default function Grid(props: GridProps) {
 	return (
 		<section>
 			<article className="grid">
-				{students.map((student) => (
+				{students?.map((student) => (
 					<Student key={student.id} name={student.name} id={student.id} />
 				))}
 			</article>

@@ -11,6 +11,7 @@ export default function AddStudentForm(props: AddStudentFormProps) {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		if (!name) return;
+
 		onAddStudent({ name });
 		setName("");
 	};
