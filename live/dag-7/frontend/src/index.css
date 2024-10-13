@@ -125,49 +125,6 @@ h1 {
   border-width: 0;
 }
 
-select {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--border-color);
-  border-radius: 0.25rem;
-  font-size: 1rem;
-  transition: border-color 0.2s ease-in-out;
-  margin-bottom: 2rem;
-
-  &::placeholder {
-    color: var(--text-muted);
-  }
-
-  &:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1); /* Blue 500 with opacity */
-  }
-}
-
-.error-message {
-  color: #880a21;
-  background-color: #ff9d9d;
-  border-radius: 0.25rem;
-  position: fixed;
-  max-width: 200px;
-  width: 100%;
-  padding: 0.5rem 1rem;
-  box-shadow: 0 4px 6px var(--shadow-color);
-
-  header {
-    font-weight: 700;
-    font-size: 1rem;
-    h3 {
-      margin: 0;
-      padding: 0;
-    }
-  }
-
-  p {
-    font-size: 0.6rem;
-  }
-}
-
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

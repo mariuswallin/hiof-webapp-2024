@@ -3,6 +3,7 @@ import Avatar from "./Avatar";
 import { X } from "lucide-react";
 import classes from "./Student.module.css";
 import useStudent from "../hooks/useStudent";
+import { useAuthContext } from "../context/AuthContext";
 
 // export type StudentProps = {
 //   id: string;
@@ -21,8 +22,8 @@ import useStudent from "../hooks/useStudent";
 // };
 
 export type StudentProps = {
-	id: string;
-	name: string;
+  id: string;
+  name: string;
 };
 
 // const Student = ({
@@ -147,52 +148,53 @@ export type StudentProps = {
 // };
 
 const Student = ({
-	id,
-	name,
-	onRemoveStudent,
-	onEditStudentName,
+  id,
+  name,
+  onRemoveStudent,
+  onEditStudentName,
 }: StudentProps & {
-	onRemoveStudent: (id: string) => void;
-	onEditStudentName: (id: string, name: string) => void;
+  onRemoveStudent: (id: string) => void;
+  onEditStudentName: (id: string, name: string) => void;
 }) => {
-	const { status, handlers } = useStudent({
-		id,
-		name,
-		onRemoveStudent,
-		onEditStudentName,
-	});
+  const { isLoggedIn } = useAuthContext();
+  const { status, handlers } = useStudent({
+    id,
+    name,
+    onRemoveStudent,
+    onEditStudentName,
+  });
 
-	return (
-		<article
-			className={classes.student}
-			onMouseMove={handlers.move}
-			onMouseLeave={handlers.leave}
-		>
-			<div className={classes.wrapper}>
-				<Avatar name={name} />
-				<form onSubmit={handlers.submit}>
-					<div className={classes.field}>
-						<input
-							type="text"
-							{...handlers.input}
-							className={status.editing ? classes.input : classes.inputMuted}
-						/>
-						{status.error && <p className={classes.error}>{status.error}</p>}
-					</div>
-				</form>
-			</div>
-			{status.removable && (
-				<button
-					type="button"
-					onClick={() => handlers.remove(id)}
-					className={classes.remove}
-				>
-					<X size={16} />
-					<span className="sr-only">Remove student</span>
-				</button>
-			)}
-		</article>
-	);
+  return (
+    <article
+      className={classes.student}
+      onMouseMove={handlers.move}
+      onMouseLeave={handlers.leave}
+    >
+      <div className={classes.wrapper}>
+        <Avatar name={name} />
+        <form onSubmit={handlers.submit}>
+          <div className={classes.field}>
+            <input
+              type="text"
+              {...handlers.input}
+              className={status.editing ? classes.input : classes.inputMuted}
+            />
+            {status.error && <p className={classes.error}>{status.error}</p>}
+          </div>
+        </form>
+      </div>
+      {status.removable ? (
+        <button
+          type="button"
+          onClick={() => handlers.remove(id)}
+          className={isLoggedIn ? classes.remove : classes.invalidRemove}
+        >
+          <X size={16} />
+          <span className="sr-only">Remove student</span>
+        </button>
+      ) : null}
+    </article>
+  );
 };
 
 export default Student;

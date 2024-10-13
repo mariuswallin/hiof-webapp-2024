@@ -7,7 +7,7 @@ type FilterProps = {
 };
 export default function Filter(props: PropsWithChildren<FilterProps>) {
 	const { onFilterChange, children, filters, filter } = props;
-	// const [filter, setFilter] = useState<string>(""); // => problem med rerender
+	// const [filter, setFilter] = useState<string>(""); // => problem med rerender hvis filter bor her
 
 	const simpleDebounce = (fn: (...args: string[]) => void, delay: number) => {
 		let timeout: ReturnType<typeof setTimeout>;

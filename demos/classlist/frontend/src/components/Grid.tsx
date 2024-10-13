@@ -2,9 +2,9 @@ import Student, { type StudentProps } from "./Student";
 import AddStudentForm from "./StudentForm";
 
 type GridProps = {
-	students: StudentProps[];
-	onAddStudent: ({ name }: { name: string }) => void;
-	onRemoveStudent: (id: string) => void;
+  students: StudentProps[];
+  onAddStudent: ({ name }: { name: string }) => void;
+  onRemoveStudent: (id: string) => void;
 };
 
 // const Grid = ({ students }: GridProps) => {
@@ -61,17 +61,25 @@ type GridProps = {
 //   );
 // };
 
-const Grid = ({ data, renderItem, children }: any) => {
-	return (
-		<section>
-			{data.length ? (
-				<div className="grid">{data.map((item) => renderItem(item))}</div>
-			) : (
-				<p>Ingen data</p>
-			)}
-			{children}
-		</section>
-	);
+const Grid = ({
+  data,
+  renderItem,
+  children,
+}: {
+  data: StudentProps[];
+  renderItem: ({ id, name }: StudentProps) => React.ReactNode;
+  children?: React.ReactNode;
+}) => {
+  return (
+    <section>
+      {data.length ? (
+        <div className="grid">{data.map((item) => renderItem(item))}</div>
+      ) : (
+        <p>Ingen data</p>
+      )}
+      {children}
+    </section>
+  );
 };
 
 export default Grid;

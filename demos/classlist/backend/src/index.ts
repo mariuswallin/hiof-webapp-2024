@@ -1,44 +1,81 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-
+import { bearerAuth } from "hono/bearer-auth";
 const app = new Hono();
 app.use("*", cors());
 
 let students = [
-  { id: "1", name: "Ola Normann" },
-  { id: "2", name: "Kari Normann" },
+	{ id: "1", name: "Ola Normann" },
+	{ id: "2", name: "Kari Normann" },
 ];
 
 app.get("/api/students", (c) => {
-  return c.json(students);
+	return c.json(students);
 });
 
 app.post("/api/students", async (c) => {
-  const student = await c.req.json();
-  students.push(student);
-  return c.json(students);
+	const { name } = await c.req.json();
+	if (!name || name.length < 5)
+		return c.json({
+			success: false,
+			error: "Name must be at least 5 characters long",
+			status: 400,
+		});
+	students.push({ id: crypto.randomUUID(), name });
+	return c.json({ data: students, success: true, status: 201 });
 });
 
-app.delete("/api/students/:id", async (c) => {
-  const id = c.req.param("id");
-  students = students.filter((student) => student.id !== id);
-  return c.json(students);
-});
+app.delete(
+	"/api/students/:id",
+	bearerAuth({
+		verifyToken: async (token, c) => {
+			const value = Buffer.from(token, "base64").toString("utf-8");
+			return value.split(":").length === 2;
+		},
+		invalidTokenMessage: {
+			success: false,
+			error: "Invalid token",
+		},
+		noAuthenticationHeaderMessage: {
+			success: false,
+			error: "Missing token",
+		},
+	}),
+	async (c) => {
+		const id = c.req.param("id");
+		const studentExist = students.some((student) => student.id === id);
+		if (!studentExist) {
+			return c.json({
+				error: "Student not found",
+				status: 404,
+				success: false,
+			});
+		}
+		students = students.filter((student) => student.id !== id);
+		return c.json({ data: students, success: true });
+	},
+);
 
 app.patch("/api/students/:id", async (c) => {
-  const id = c.req.param("id");
-  const { name } = await c.req.json();
-  students = students.map((student) =>
-    student.id === id ? { ...student, name } : student
-  );
-  return c.json(students);
+	const id = c.req.param("id");
+	const { name } = await c.req.json();
+	students = students.map((student) =>
+		student.id === id ? { ...student, name } : student,
+	);
+	return c.json(students);
+});
+
+app.post("/api/auth/login", async (c) => {
+	const { username, password } = await c.req.json();
+	const hash = Buffer.from(`${username}:${password}`).toString("base64");
+	return c.json(hash);
 });
 
 const port = 3999;
 console.log(`Server is running on port ${port}`);
 
 serve({
-  fetch: app.fetch,
-  port,
+	fetch: app.fetch,
+	port,
 });

@@ -86,3 +86,19 @@ input {
   background-color: transparent;
   text-align: left;
 }
+
+.invalidRemove {
+  position: absolute;
+  top: 0;
+  right: 0rem;
+  background-color: var(--warning-color);
+  color: white;
+  border: none;
+  height: 100%;
+  min-width: 50px;
+  z-index: 1;
+
+  &:hover {
+    background-color: #f59e0b; /* Yellow 400 */
+  }
+}
