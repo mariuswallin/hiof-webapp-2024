@@ -13,27 +13,21 @@ import {
 } from "./student.schema";
 
 import { createStudent, createStudentResponse } from "./student.mapper";
+import type { Query } from "@/lib/query";
 
 export const createStudentService = (studentRepository: StudentRepository) => {
   const getById = async (id: string): Promise<Result<Student | undefined>> => {
     return studentRepository.getById(id);
   };
 
-  const list = async (
-    query?: Record<string, string>
-  ): Promise<Result<StudentResponse[]>> => {
-    const students = await studentRepository.list(query);
-    if (!students.success) {
-      return {
-        success: false,
-        error: {
-          code: "INTERNAL_SERVER_ERROR",
-          message: "Failed to list students",
-        },
-      };
-    }
+  const list = async (query?: Query): Promise<Result<StudentResponse[]>> => {
+    const result = await studentRepository.list(query);
+    if (!result.success) return result;
 
-    return { success: true, data: students.data.map(createStudentResponse) };
+    return {
+      ...result,
+      data: result.data.map(createStudentResponse),
+    };
   };
 
   const create = async (data: CreateStudent): Promise<Result<string>> => {

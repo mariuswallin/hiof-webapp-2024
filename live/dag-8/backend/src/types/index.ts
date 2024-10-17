@@ -1,11 +1,10 @@
-import type { Pagination } from "@/lib/query";
+export type Success<T> = {
+  success: true;
+  data: T;
+};
 
 export type Result<T> =
-  | {
-      success: true;
-      data: T;
-      pagination?: Pagination;
-    }
+  | Success<T>
   | {
       success: false;
       error: {
@@ -13,3 +12,5 @@ export type Result<T> =
         message: string;
       };
     };
+
+// Promise<Result<Student[]>>

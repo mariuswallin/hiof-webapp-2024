@@ -7,6 +7,7 @@ import type {
 } from "./student.schema";
 import type { Result } from "@/types";
 import { fromDb, toDb } from "./student.mapper";
+import type { Query } from "@/lib/query";
 
 export const createStudentRepository = (db: DB) => {
   const exist = async (id: string): Promise<boolean> => {
@@ -42,21 +43,46 @@ export const createStudentRepository = (db: DB) => {
     }
   };
 
-  const list = async (
-    q?: Record<string, string>
-  ): Promise<Result<Student[]>> => {
+  const list = async (params?: Query): Promise<Result<Student[]>> => {
     try {
-      const baseQuery = "SELECT * FROM students";
+      const { name, pageSize = 10, page = 0 } = params ?? {};
 
-      const query = db.prepare(
-        `${baseQuery} ${q?.name ? `WHERE name LIKE '%${q.name}%'` : ""}`
-      );
+      const offset = (Number(page) - 1) * Number(pageSize);
 
-      const data = query.all() as StudentFromDb[];
+      const hasPagination = Number(page) > 0;
+
+      let query = "SELECT * FROM students";
+      query += name ? `WHERE name LIKE '%${name}%'` : "";
+      query += pageSize ? ` LIMIT ${pageSize}` : "";
+      query += offset ? ` OFFSET ${offset}` : "";
+
+      const statement = db.prepare(query);
+
+      const data = statement.all() as StudentFromDb[];
+
+      const { total } = db
+        .prepare("SELECT COUNT(*) as total from students")
+        .get() as {
+        total: number;
+      };
+
+      const totalPages = Math.ceil(total / Number(pageSize ?? 1));
+      const hasNextPage = Number(page) < totalPages;
+      const hasPreviousPage = Number(page ?? 1) > 1;
 
       return {
         success: true,
-        data: data.map((student) => fromDb(student)),
+        data: data.map(fromDb),
+        ...(hasPagination
+          ? {
+              total: data.length,
+              pageSize,
+              page,
+              totalPages,
+              hasNextPage,
+              hasPreviousPage,
+            }
+          : {}),
       };
     } catch (error) {
       return {

@@ -3,6 +3,7 @@ import { Hono, type Context } from "hono";
 import { cors } from "hono/cors";
 import { bearerAuth } from "hono/bearer-auth";
 import { studentController } from "./features/students/student.controller";
+import { HTTPException } from "hono/http-exception";
 
 const app = new Hono();
 app.use("*", cors());
@@ -76,8 +77,20 @@ app.post("/api/auth/login", async (c) => {
 
 app.route("/v1/students", studentController);
 
-app.onError((err: Error, c: Context) => {
-  console.error(err);
+app.onError(async (err: Error, c: Context) => {
+  // Errors ikke håndtert andre steder
+  console.log(err);
+  if (err instanceof HTTPException) {
+    const message = await err.res?.json();
+    return c.json(
+      {
+        error: {
+          message: message?.error ?? err.message ?? "Noe gikk galt",
+        },
+      },
+      { status: err.status }
+    );
+  }
 
   return c.json(
     {

@@ -96,7 +96,12 @@ function StudentsPage() {
       const data = await response.json();
 
       if (!data.success) {
-        setErrors((err) => [...err, data.error]);
+        setErrors((err) => [
+          ...err,
+          response.status === 401
+            ? "Du er ikke logget inn"
+            : "Kan ikke slette student",
+        ]);
         return;
       }
       setStudents(data.data);

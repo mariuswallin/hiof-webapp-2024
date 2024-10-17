@@ -1,12 +1,13 @@
 import { Hono } from "hono";
 import { studentService, type StudentService } from "./student.service";
 import { errorResponse, type ErrorCode } from "@/lib/error";
+import { validateQuery } from "@/lib/query";
 
 export const createStudentController = (studentService: StudentService) => {
   const app = new Hono();
 
   app.get("/", async (c) => {
-    const query = c.req.query();
+    const query = validateQuery(c.req.query()).data ?? {};
 
     const result = await studentService.list(query);
 
