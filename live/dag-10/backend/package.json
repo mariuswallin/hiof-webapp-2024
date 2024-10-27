@@ -1,0 +1,24 @@
+{
+	"name": "server",
+	"type": "module",
+	"scripts": {
+		"dev": "tsx watch src/index.ts",
+		"db:setup": "tsx src/db/index.ts"
+	},
+	"dependencies": {
+		"@hono/node-server": "^1.13.2",
+		"@t3-oss/env-core": "^0.11.1",
+		"better-sqlite3": "^11.5.0",
+		"dotenv": "^16.4.5",
+		"hono": "^4.6.7"
+	},
+	"devDependencies": {
+		"@antfu/eslint-config": "^3.8.0",
+		"@types/better-sqlite3": "^7.6.11",
+		"@types/node": "^22.8.1",
+		"@typescript-eslint/eslint-plugin": "^8.11.0",
+		"@typescript-eslint/parser": "^8.11.0",
+		"eslint": "^9.13.0",
+		"tsx": "^4.19.2"
+	}
+}

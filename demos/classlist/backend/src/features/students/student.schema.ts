@@ -7,13 +7,6 @@ export const studentsSchema = z.object({
   updatedAt: z.string(),
 });
 
-export const studentFromDbSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  created_at: z.string(),
-  updated_at: z.string(),
-});
-
 export const studentResponseSchema = studentsSchema.extend({
   firstName: z.string(),
   lastName: z.string(),
@@ -32,6 +25,14 @@ export const createStudentSchema = studentsSchema.omit({
 });
 
 export type Student = z.infer<typeof studentsSchema>;
+
+export const studentFromDbSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  created_at: z.string(),
+  updated_at: z.string(),
+});
+
 export type StudentFromDb = z.infer<typeof studentFromDbSchema>;
 export type CreateStudent = z.infer<typeof createStudentSchema>;
 export type UpdateStudent = z.infer<typeof updateStudentSchema>;
