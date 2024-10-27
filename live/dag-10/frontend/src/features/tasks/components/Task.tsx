@@ -15,7 +15,7 @@ export function Task({
           <select
             value={task?.status ?? "pending"}
             onChange={(e) => onUpdateTask(e.target.value as TaskType["status"])}
-            className="border rounded px-2 py-1"
+            className="border rounded px-2 py-1 text-black"
           >
             <option value="pending" disabled>
               Pending
@@ -31,6 +31,7 @@ export function Task({
       )}
       <h1 className="mb-2 text-lg font-bold">Task komponent</h1>
       <p>{task?.title}</p>
+      <p>{task?.status}</p>
     </section>
   );
 }
